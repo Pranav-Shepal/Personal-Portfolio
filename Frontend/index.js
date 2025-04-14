@@ -67,7 +67,7 @@ document.getElementById("contactform").addEventListener("submit", async function
     };
 
     try {
-        let response = await fetch("http://pranav-portfolio-xt0l.onrender.com/api/send-message", {
+        let response = await fetch("https://pranav-portfolio-xt0l.onrender.com/api/send-message", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
