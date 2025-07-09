@@ -37,14 +37,17 @@ app.post("/api/send-message", (req, res) => {
     }
 
     const mailOptions = {
-        from: email,
+        from:`"${name}" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER,  // Your email to receive messages
+        replyTo: email,
+        // from: email,
         subject: `New Message from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\nMessage: ${message}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
+            console.error("Mail error:", error); // Add this
             return res.status(500).json({ error: "Failed to send message!" });
         }
         res.json({ success: "Message sent successfully!" });
